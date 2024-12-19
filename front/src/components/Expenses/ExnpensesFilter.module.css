@@ -1,0 +1,16 @@
+.filter {
+    text-align: right;
+    padding: 35px 0;
+}
+.filter label {
+    color: #fff;
+    font-weight: bold;
+}
+.filter select {
+    font-weight: bold;
+    padding: 5px;
+    background-color: #fff;
+    color: #416391;
+    cursor: pointer;
+    border-radius: 6px;
+}

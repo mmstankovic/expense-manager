@@ -1,0 +1,46 @@
+.expense-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px 0;
+    color: #416391;
+    padding: 10px;
+}
+.first-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.1rem;
+}
+.second-col {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+}
+.second-col button {
+    display: flex;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: transparent;
+}
+.date {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #0FEDAC;
+    border-radius: 8px;
+    border: 2px solid #0FEDAC;
+    padding: 4px;
+}
+.date :nth-child(1) {
+    font-weight: bold;
+}
+.date :nth-child(2) {
+    font-weight: bold;
+}
