@@ -1,13 +1,13 @@
 import classes from './ExpenseForm.module.css'
 import { useState } from 'react'
 
-
 const ExpenseForm = (props) => {
     const [enteredName, setEnteredName] = useState('')
     const [enteredAmount, setEnteredAmount] = useState('')
     const [enteredDate, setEnteredDate] = useState('')
     const [nameInputIsTouched, setNameInputIsTouched] = useState(false)
     const [amountInputIsTouched, setAmountInputIsTouched] = useState(false)
+    const [datePickerIsTouched, setDatePickerIsTouched] = useState(false)
 
     const validateNameInputHandler = () => {
         setNameInputIsTouched(true)
@@ -15,15 +15,20 @@ const ExpenseForm = (props) => {
     const validateAmountInputHandler = () => {
         setAmountInputIsTouched(true)
     }
+    const validateDatePickerHandler = () => {
+        setDatePickerIsTouched(true)
+    }
     
     const enteredNameIsValid = enteredName.trim() !== ''
     const nameInputIsInvalid = !enteredNameIsValid && nameInputIsTouched
     const enteredAmountIsValid = enteredAmount.trim() !== ''
     const amountInputIsInvalid = !enteredAmountIsValid && amountInputIsTouched
+    const enteredDateIsValid = enteredDate !== ''
+    const datePickerIsInvalid = !enteredDateIsValid && datePickerIsTouched
 
     let formIsValid = false 
 
-    if(enteredNameIsValid && enteredAmountIsValid) {
+    if(enteredNameIsValid && enteredAmountIsValid && enteredDateIsValid) {
         formIsValid = true
     }
 
@@ -37,8 +42,7 @@ const ExpenseForm = (props) => {
         const new_expense = {
             name: enteredName,
             amount: +enteredAmount,
-            date: new Date(enteredDate),
-            id: 'e' + Math.floor(Math.random() * 1000) + 1
+            date: new Date(enteredDate)
         }
        
         props.onAdd(new_expense)
@@ -48,6 +52,7 @@ const ExpenseForm = (props) => {
 
         setNameInputIsTouched(false)
         setAmountInputIsTouched(false)
+        setDatePickerIsTouched(false)
     }
     return (
         <form onSubmit={submitHandler}>
@@ -64,9 +69,9 @@ const ExpenseForm = (props) => {
                 </div>
                 <div className={classes['form-control']}>
                     <label htmlFor="date">Date</label>
-                    <input id="date" type="date" value={enteredDate} onChange={(e) => setEnteredDate(e.target.value)}/>
+                    <input id="date" type="date" value={enteredDate} onChange={(e) => setEnteredDate(e.target.value)} onBlur={validateDatePickerHandler}/>
+                    {datePickerIsInvalid && <p className={classes.invalid}>Please pick a date!</p>}
                 </div>
-               
             </div>
             <div className={classes.actions}>
                 <button type="button" onClick={props.onHide}>Cancel</button>

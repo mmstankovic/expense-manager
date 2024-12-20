@@ -20,15 +20,14 @@ function App() {
 
       const data = await response.json()
 
-
-      const loadedExpenses = data.map((expense) => ({...expense, date: new Date(expense.date)}))
-      setIsLoading(false)
+      const loadedExpenses = data.expenses.map((expense) => ({...expense, date: new Date(expense.date)}))
       setExpenses(loadedExpenses)
+      setIsLoading(false)
     }
 
     fetchExpenses().catch((error) => {
-      setIsLoading(false)
       setHttpError(error.message)
+      setIsLoading(false)
     })
   }, [])
 
@@ -48,15 +47,14 @@ function App() {
       }
 
       const data = await response.json()
-      const transformedData = data.map((expense) => ({...expense, date: new Date(expense.date)}))
-
+     
+      setExpenses((prevState) => [...prevState, {...data, date: new Date(data.date)}])
       setIsLoading(false)
-      setExpenses(transformedData)
     }
 
     sendExpenseData().catch((error) => {
-      setIsLoading(false)
       setHttpError(error.message)
+      setIsLoading(false)
     })
     
   };
@@ -74,11 +72,12 @@ function App() {
       }
       
       const filtered = expenses.filter((item) => item.id !== expenseId)
-      setIsLoading(false)
+      
       setExpenses(filtered)
-    } catch (err) {
       setIsLoading(false)
+    } catch (err) {
       setHttpError(err.message)
+      setIsLoading(false)
     }
   }
 

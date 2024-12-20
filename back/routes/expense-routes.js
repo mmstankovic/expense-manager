@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/', getAllExpenses)
 router.post('/new-expense', addNewExpense)
-router.delete('/:expensesId', deleteExpense)
+router.delete('/:expenseId', deleteExpense)
 
 module.exports = router
