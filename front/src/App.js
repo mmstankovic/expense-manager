@@ -56,7 +56,6 @@ function App() {
       setHttpError(error.message)
       setIsLoading(false)
     })
-    
   };
 
   const deleteExpense = async (expenseId) => {
