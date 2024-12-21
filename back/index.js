@@ -12,6 +12,10 @@ const app2 = express()
 app2.use(cors())
 app2.use(body_parser.json())
 
+app2.get('/', (req, res) => {
+    res.send('Hello, world!')
+})
+
 app2.use('/api/expenses', expensesRoutes)
 
 mongoose
