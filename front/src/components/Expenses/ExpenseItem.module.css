@@ -44,3 +44,20 @@
 .date :nth-child(2) {
     font-weight: bold;
 }
+@media (max-width:575px) {
+    .expense-item {
+        padding: 0.3125rem;
+    }
+    .first-col, .second-col {
+        gap:0.3125rem;
+    }
+    .second-col h2 {
+        font-size: 16px;
+    }
+    .second-col button {
+        padding: 0.3125rem;
+    }
+    .date {
+        border: 1px solid #0FEDAC;
+    }
+}
